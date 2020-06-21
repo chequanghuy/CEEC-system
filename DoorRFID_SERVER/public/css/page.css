@@ -1,0 +1,59 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+html{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.logo{
+    width: 150px;
+    float: left;
+}
+h1{
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 100px;
+    color: rgb(181, 216, 181);
+}
+body{
+    background-image: linear-gradient(135deg,rgba(20, 114, 43, 0.8),rgba(77, 184, 103, 0.65) ), url(../images/Green-Printed-Circuit-Board.jpg);
+    background-size: cover;
+}
+body button{
+    text-decoration: none;
+    color: white;
+    background-color: rgb(102, 162, 211);
+    padding: 10px 30px;
+    border-radius: 15px;
+    margin: 0 5px;
+    width: 150px;
+    display: inline-block;
+}
+body button:hover,
+body button:active{
+    background-color: rgb(74, 149, 211);
+}
+.status{
+    float: left;
+    padding: 15px 30px;
+}
+.status label{
+    margin-left: 15px;
+}
+.status textarea{
+    margin: 5px;
+    border-radius: 20px;
+}
+
+.chat{
+    margin-top: 15px;
+}
+.chat textarea{
+    border-radius: 20px;
+    overflow: auto;
+    font-size: 20px;
+}
+.chat input{
+    border-radius: 20px;
+}
