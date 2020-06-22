@@ -1,0 +1,13 @@
+.\objects\fonts.o: ssd1306\fonts.c
+.\objects\fonts.o: ssd1306\fonts.h
+.\objects\fonts.o: .\inc\stm32f10x.h
+.\objects\fonts.o: .\inc\core_cm3.h
+.\objects\fonts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\fonts.o: .\inc\system_stm32f10x.h
+.\objects\fonts.o: .\inc\stm32f10x_conf.h
+.\objects\fonts.o: .\inc\stm32f10x_gpio.h
+.\objects\fonts.o: .\inc\stm32f10x.h
+.\objects\fonts.o: .\inc\stm32f10x_rcc.h
+.\objects\fonts.o: .\inc\stm32f10x_usart.h
+.\objects\fonts.o: .\inc\misc.h
+.\objects\fonts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

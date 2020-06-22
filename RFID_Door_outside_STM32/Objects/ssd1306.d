@@ -1,0 +1,17 @@
+.\objects\ssd1306.o: ssd1306\ssd1306.c
+.\objects\ssd1306.o: ssd1306\ssd1306.h
+.\objects\ssd1306.o: .\inc\stm32f10x.h
+.\objects\ssd1306.o: .\inc\core_cm3.h
+.\objects\ssd1306.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ssd1306.o: .\inc\system_stm32f10x.h
+.\objects\ssd1306.o: .\inc\stm32f10x_conf.h
+.\objects\ssd1306.o: .\inc\stm32f10x_gpio.h
+.\objects\ssd1306.o: .\inc\stm32f10x.h
+.\objects\ssd1306.o: .\inc\stm32f10x_rcc.h
+.\objects\ssd1306.o: .\inc\stm32f10x_usart.h
+.\objects\ssd1306.o: .\inc\misc.h
+.\objects\ssd1306.o: ssd1306\ssd1306_i2c.h
+.\objects\ssd1306.o: .\inc\stm32f10x_i2c.h
+.\objects\ssd1306.o: ssd1306\fonts.h
+.\objects\ssd1306.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\ssd1306.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
