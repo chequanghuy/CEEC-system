@@ -1,0 +1,11 @@
+tbody tr:hover { background: rgb(165, 153, 153) !important; }
+td a { 
+    display: block; 
+    text-decoration: none;
+    color: black;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
