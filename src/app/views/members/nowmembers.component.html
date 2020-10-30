@@ -1,0 +1,208 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <!--/.col-->
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-9" style="display: flex;
+            align-items: center;"><i class="fa fa-align-justify"></i><span
+                style="margin-left: 5px;margin-right: 5px;">Members(CEEC)</span>
+
+            </div>
+            <div class="col-lg-3 row">
+              <div class="col-lg-6">
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
+                  (click)="searchModal.show()"><i class="fa fa-search"></i> Search</button>
+              </div>
+              <div class="col-lg-3">
+                <button type="button" class="btn btn-block btn-success"
+                  style="height: 35px !important;width: 40px !important;" data-toggle="modal"
+                  (click)="addModal.show()"><i class="fa fa-plus fa-lg"></i></button>
+              </div>
+              <!-- <div class="col-lg-3">
+                <button type="button" class="btn btn-block btn-danger"
+                  style="height: 35px !important;width: 40px !important;" data-toggle="modal"
+                  (click)="delModal.show()"><i class="cui-delete icons d-block"></i></button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>MSSV</th>
+                <th>Gender</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of Members">
+                <td><a [routerLink]="['detail', item.mssv]">{{item.name}}</a></td>
+                <td><a [routerLink]="['detail', item.mssv]">{{item.mssv}}</a></td>
+                <td><a [routerLink]="['detail', item.mssv]">{{item.gender==1?'Nam':'Nữ'}}</a></td>
+                <td>
+                  <!-- <span class="badge badge-success">Active</span> -->
+                  <a [routerLink]="['detail', item.mssv]">
+                    {{item.sdt}}
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul> -->
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+<!-- ---------------------------------------------------------------------------- -->
+<div bsModal #addModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="addSubmit()" [formGroup]="addForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm thành viên</h4>
+          <button type="button" class="close" (click)="addModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="name-input"><strong>Họ tên</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="name-input" name="name-input" class="form-control" placeholder="Họ tên"
+                formControlName="Name">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row" formGroupName="Gender">
+            <label class="col-md-3 col-form-label" for="inline-radios1"><strong>Giới tính</strong> </label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check form-check-inline mr-1" id="inline-radios1">
+                <input class="form-check-input" type="radio" value="1" formControlName="GenderVal">
+                <label class="form-check-label" for="inlineRadio1">Nam</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" value="0" formControlName="GenderVal">
+                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="date-input"><strong>Ngày sinh</strong></label>
+            <div class="col-md-9">
+              <input type="date" id="date-input" name="date-input" class="form-control" placeholder="Text"
+                formControlName="Date">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="mssv-input"><strong>MSSV</strong></label>
+            <div class="col-md-9">
+              <input type="number" id="mssv-input" name="mssv-input" class="form-control" placeholder="MSSV"
+                formControlName="MSSV">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="number-input"><strong>Số điện thoại</strong></label>
+            <div class="col-md-9">
+              <input type="number" id="number-input" name="number-input" class="form-control"
+                placeholder="Số điện thoại" formControlName="SDT">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="fb-input"><strong>Facebook</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="fb-input" name="fb-input" class="form-control" placeholder="Facebook"
+                formControlName="Facebook">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row" formGroupName="Role">
+            <label class="col-md-3 col-form-label" for="inline-radios"><strong>Chức vụ</strong> </label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check form-check-inline mr-1" id="inline-radios">
+                <input class="form-check-input" type="radio" value="0" formControlName="RoleVal">
+                <label class="form-check-label" for="inlineRadio1">Chủ nhiệm</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" value="1" formControlName="RoleVal">
+                <label class="form-check-label" for="inlineRadio2">Phó chủ nhiệm</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" value="2" formControlName="RoleVal">
+                <label class="form-check-label" for="inlineRadio3">Thành viên</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="file-input"><strong>Ảnh đại diện</strong> </label>
+            <div class="col-md-9">
+              <input type="file" id="file-input" name="file-input" formControlName="UrlImage">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="addModal.hide()">Close</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--  -->
+<div bsModal #searchModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Search</h4>
+          <button type="button" class="close" (click)="searchModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="name1-input"><strong>Tên</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="name1-input" name="name1-input" class="form-control" formControlName="Name"
+                placeholder="Text">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="mssv1-input"><strong>MSSV</strong></label>
+            <div class="col-md-9">
+              <input type="number" id="mssv1-input" name="mssv1-input" class="form-control" placeholder="MSSV"
+                formControlName="MSSV">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="searchModal.hide()">Close</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,302 @@
+<div class="animated fadeIn">
+    <div class="row">
+      <!--/.col-->
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-lg-9" style="display: flex;
+              align-items: center;"><i class="fa fa-align-justify"></i><span
+                  style="margin-left: 5px;margin-right: 5px;">All devices</span>
+  
+              </div>
+              <div class="col-lg-3 row">
+                <div class="col-lg-6">
+                  <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
+                    (click)="searchModal.show()"><i class="fa fa-search"></i> Search</button>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-block btn-success"
+                    style="height: 35px !important;width: 40px !important;" data-toggle="modal"
+                    (click)="addModal.show()"><i class="fa fa-plus fa-lg"></i></button>
+                </div>
+                <div class="col-lg-3">
+                  <button type="button" class="btn btn-block btn-danger"
+                    style="height: 35px !important;width: 40px !important;" data-toggle="modal"
+                    (click)="delModal.show()"><i class="cui-delete icons d-block"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Feature</th>
+                  <th>Status</th>
+                  <th>Available</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of devices">
+                  <td><a [routerLink]="['detail', item.roomID]">{{item.name}}</a></td>
+                  <td><a [routerLink]="['detail', item.roomID]">{{item.feature}}</a></td>
+                  <td><a [routerLink]="['detail', item.roomID]">{{item.status}}</a></td>
+                  <td>
+                    <!-- <span class="badge badge-success">Active</span> -->
+                    <a [routerLink]="['detail', item.roomID]">
+                      {{item.available}}
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row">
+              <ul class="pagination col-lg-5" style="padding-left: 15px;">
+                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+              <div class="col-lg-6"></div>
+              <div class="col-lg-1">
+                <button type="button" class="btn btn-block btn-primary">Refresh</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+    <!--/.row-->
+  </div>
+  <!-- ---------------------------------------------------------------------------- -->
+  <div bsModal #addModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-success" role="document">
+      <div class="modal-content">
+        <form (ngSubmit)="addSubmit()" [formGroup]="addForm">
+          <div class="modal-header">
+            <h4 class="modal-title">Add devices</h4>
+            <button type="button" class="close" (click)="addModal.hide()" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <tabset>
+              <tab heading="Add device">
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="name-input"><strong>Tên thiết bị</strong></label>
+                  <div class="col-md-9">
+                    <input type="text" id="name-input" name="name-input" class="form-control" formControlName="Name"
+                      placeholder="Text">
+                    <span class="help-block">This is a help text</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="feature-input"><strong>Chức năng</strong></label>
+                  <div class="col-md-9">
+                    <input type="text" id="feature-input" name="feature-input" class="form-control"
+                      formControlName="Feature" placeholder="Text">
+                    <span class="help-block">This is a help text</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="owner-input"><strong>Người sở hữu</strong></label>
+                  <div class="col-md-9">
+                    <input type="text" id="owner-input" name="owner-input" class="form-control" formControlName="Owner"
+                      placeholder="Text">
+                    <span class="help-block">This is a help text</span>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="textarea-input"><strong>Mô tả</strong> </label>
+                  <div class="col-md-9">
+                    <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                      formControlName="Description" placeholder="Content.."></textarea>
+                  </div>
+                </div>
+                <div class="form-group row" formGroupName="Status">
+                  <label class="col-md-3 col-form-label" for="inline-radios"><strong>Tình trạng</strong> </label>
+                  <div class="col-md-9 col-form-label">
+                    <div class="form-check form-check-inline mr-1" id="inline-radios">
+                      <input class="form-check-input" type="radio" id="inlineRadio1" value="Tốt"
+                        formControlName="statusVal">
+                      <label class="form-check-label" for="inlineRadio1">Tốt</label>
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                      <input class="form-check-input" type="radio" id="inlineRadio2" value="Hỏng"
+                        formControlName="statusVal">
+                      <label class="form-check-label" for="inlineRadio2">Hỏng</label>
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                      <input class="form-check-input" type="radio" id="inlineRadio3" value="Khác"
+                        formControlName="statusVal">
+                      <label class="form-check-label" for="inlineRadio3">Khác</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="file-input"><strong>Ảnh thiết bị</strong> </label>
+                  <div class="col-md-9">
+                    <input type="file" id="file-input" name="file-input" formControlName="UrlImage">
+                  </div>
+                </div>
+              </tab>
+              <tab heading="Add devices">
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="file1-input">Excel file</label>
+                  <div class="col-md-9">
+                    <input type="file" id="file1-input" name="file1-input">
+                  </div>
+                </div>
+              </tab>
+            </tabset>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="addModal.hide()">Close</button>
+            <button type="submit" class="btn btn-success"><i class="fa fa-dot-circle-o"></i> Submit</button>
+          </div>
+        </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!--  -->
+  <div bsModal #searchModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-primary" role="document">
+      <div class="modal-content">
+        <form (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Search</h4>
+          <button type="button" class="close" (click)="searchModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="name1-input"><strong>Tên thiết bị</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="name1-input" name="name1-input" class="form-control" formControlName="Name"
+                placeholder="Text">
+              <span class="help-block">This is a help text</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="feature1-input"><strong>Chức năng</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="feature1-input" name="feature1-input" class="form-control"
+                formControlName="Feature" placeholder="Text">
+              <span class="help-block">This is a help text</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="owner1-input"><strong>Người sở hữu</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="owner1-input" name="owner1-input" class="form-control" formControlName="Owner"
+                placeholder="Text">
+              <span class="help-block">This is a help text</span>
+            </div>
+          </div>
+          <div class="form-group row" formGroupName="Status">
+            <label class="col-md-3 col-form-label" for="inline-radios"><strong>Tình trạng</strong> </label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check form-check-inline mr-1" id="inline-radios">
+                <input class="form-check-input" type="radio" value="Tốt"
+                  formControlName="statusVal">
+                <label class="form-check-label" for="inlineRadio1">Tốt</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" value="Hỏng"
+                  formControlName="statusVal">
+                <label class="form-check-label" for="inlineRadio2">Hỏng</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" value="Khác"
+                  formControlName="statusVal">
+                <label class="form-check-label" for="inlineRadio3">Khác</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="searchModal.hide()">Close</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </form>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!--  -->
+  <div bsModal #delModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-danger modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete devices</h4>
+          <button type="button" class="close" (click)="delModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input"><strong>Tên thiết bị</strong></label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input"><strong>Chức năng</strong></label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="text-input"><strong>Người sở hữu</strong></label>
+              <div class="col-md-9">
+                <input type="text" id="text-input" name="text-input" class="form-control" placeholder="Text">
+                <span class="help-block">This is a help text</span>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="textarea-input"><strong>Mô tả</strong> </label>
+              <div class="col-md-9">
+                <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                  placeholder="Content.."></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="inline-radios"><strong>Tình trạng</strong> </label>
+              <div class="col-md-9 col-form-label">
+                <div class="form-check form-check-inline mr-1" id="inline-radios">
+                  <input class="form-check-input" type="radio" name="inline-radios" id="inlineRadio1" value="option1">
+                  <label class="form-check-label" for="inlineRadio1">Tốt</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="inline-radios" id="inlineRadio2" value="option2">
+                  <label class="form-check-label" for="inlineRadio2">Hỏng</label>
+                </div>
+                <div class="form-check form-check-inline mr-1">
+                  <input class="form-check-input" type="radio" name="inline-radios" id="inlineRadio3" value="option3">
+                  <label class="form-check-label" for="inlineRadio3">Khác</label>
+                </div>
+              </div>
+            </div>
+          </form> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="delModal.hide()">Close</button>
+          <button type="submit" class="btn btn-danger"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

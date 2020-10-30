@@ -1,0 +1,204 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-lg-11" style="display: flex;
+      align-items: center;"><i class="fa fa-align-justify"></i><span
+          style="margin-left: 5px;margin-right: 5px;">Members(CEEC)</span>
+        <button type="button" class="btn btn-block btn-primary" style="height: 35px !important;width: 40px !important;"
+          data-toggle="modal" (click)="settingModal.show()"><i class="icon-settings icons"></i></button>
+      </div>
+      <div class="col-lg-1 center">
+        <button type="button" class="btn btn-block btn-danger" data-toggle="modal" (click)="deleteModal.show()"><i
+            class="cui-delete icons d-block"></i></button>
+      </div>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4" style="
+            max-width: 400px;
+            max-height: 400px;
+            border: 1px solid #BFBFBF;
+            background-color: white;
+            box-shadow: 10px 10px 5px #aaaaaa;">
+        <img [src]="detail.image"
+          class="img-polaroid" alt="Lenovo Desktop" style="width: 100%;height: 100%;">
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-7">
+        <h2>{{detail.name}}</h2>
+        <h4 class="muted">Tình trạng: {{detail.status}}</h4>
+        <h4>Mô tả:</h4>
+        <p>{{detail.description}}</p>
+        <hr>
+        <h3>Sẵn có</h3>
+        <div class="muted"><strong>Sở hữu:</strong> {{detail.owner}}</div>
+        <br>
+        <p><button class="btn btn-success btn-large" data-toggle="modal" (click)="loanModal.show()">Đăng kí
+            mượn</button></p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a [routerLink]="['/devices/alldevices']" class="btn btn-success btn-large">Back</a>
+  </div>
+</div>
+
+<div bsModal #loanModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-success" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="loanSubmit()" [formGroup]="loanForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Phiếu mượn</h4>
+          <button type="button" class="close" (click)="loanModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <button type="button" class="btn btn-primary">Quẹt thẻ</button><br>
+          <div>HOẶC NHẬP</div>
+          <div style="text-align: center;">
+            <h4>THÔNG TIN</h4>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="username-input"><strong>Tên</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="username-input" name="username-input" class="form-control" placeholder="Text"
+                formControlName="Name">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="mssv-input"><strong>MSSV</strong></label>
+            <div class="col-md-9">
+              <input type="number" id="mssv-input" name="mssv-input" class="form-control" placeholder="Text"
+                formControlName="MSSV">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="sdt-input"><strong>SĐT</strong></label>
+            <div class="col-md-9">
+              <input type="number" id="sdt-input" name="sdt-input" class="form-control" placeholder="Text"
+                formControlName="SDT">
+              <!-- <span class="help-block">This is a help text</span> -->
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="loanModal.hide()">Close</button>
+          <button type="submit" class="btn btn-success"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--  -->
+<div bsModal #settingModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="settingSubmit()" *ngIf="detail" [formGroup]="settingForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Sửa thông tin thiết bị</h4>
+          <button type="button" class="close" (click)="settingModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="name-input"><strong>Tên thiết bị</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="name-input" name="name-input" class="form-control" formControlName="Name"
+                placeholder="Text">
+              <span class="help-block">This is a help text</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="feature-input"><strong>Chức năng</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="feature-input" name="feature-input" class="form-control" formControlName="Feature"
+                placeholder="Text">
+              <span class="help-block">This is a help text</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="owner-input"><strong>Người sở hữu</strong></label>
+            <div class="col-md-9">
+              <input type="text" id="owner-input" name="owner-input" class="form-control" formControlName="Owner"
+                placeholder="Text">
+              <span class="help-block">This is a help text</span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="textarea-input"><strong>Mô tả</strong> </label>
+            <div class="col-md-9">
+              <textarea id="textarea-input" name="textarea-input" rows="3" class="form-control"
+                formControlName="Description" placeholder="Content.."></textarea>
+            </div>
+          </div>
+          <div class="form-group row" formGroupName="Status">
+            <label class="col-md-3 col-form-label" for="inline-radios"><strong>Tình trạng</strong> </label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check form-check-inline mr-1" id="inline-radios">
+                <input class="form-check-input" type="radio" id="inlineRadio1" value="Tốt" formControlName="statusVal">
+                <label class="form-check-label" for="inlineRadio1">Tốt</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" id="inlineRadio2" value="Hỏng" formControlName="statusVal">
+                <label class="form-check-label" for="inlineRadio2">Hỏng</label>
+              </div>
+              <div class="form-check form-check-inline mr-1">
+                <input class="form-check-input" type="radio" id="inlineRadio3" value="Khác" formControlName="statusVal">
+                <label class="form-check-label" for="inlineRadio3">Khác</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="file-input"><strong>Ảnh thiết bị</strong> </label>
+            <div class="col-md-9">
+              <input type="file" id="file-input" name="file-input" formControlName="UrlImage">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="settingModal.hide()">Close</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--  -->
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Sửa thông tin thiết bị</h4>
+        <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        Có chắc bạn muốn xóa thiết bị?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="deleteModal.hide()">Close</button>
+        <button (click)="deleteDevice()" class="btn btn-danger"><i class="fa fa-dot-circle-o"></i> Delete</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
