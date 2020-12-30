@@ -7,10 +7,7 @@ var pool = mysql.createPool({
   password: '',
   database: 'ceec_management'
 });
-// pool.connect(function (err) {
-//   if (err) throw err;
-//   console.log("Connected database success!")
-// });
+
 exports.addDevice = function (data) {
   return new Promise(function (resolve, reject) {
     let queryItem = "insert into `devices` (name, feature, owner, description, status, image) value (?,?,?,?,?,?)";
