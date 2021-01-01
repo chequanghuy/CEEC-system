@@ -1,0 +1,82 @@
+<div class="animated fadeIn">
+    <h2> #{{detailLoan.loanID}}</h2>
+    <div class="row">
+      <!--/.col-->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h5>Thông tin người mượn</h5>
+          </div>
+          <div class="card-body">
+            <div>Tên: {{detailLoan.userName}}</div>
+            <div>MSSV: {{detailLoan.mssv}}</div>
+            <div>SĐT: {{detailLoan.sdt}}</div>
+            <div>Ngày mượn: {{detailLoan.datebegin}}</div>
+            <div>Hạn trả: {{detailLoan.dateend}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-lg-10" style="display: flex;
+              align-items: center;"><i class="fa fa-align-justify"></i><span style="margin-left: 5px;">Các thiết bị đang mượn</span></div>
+              <div class="col-lg-2 center">
+                <!-- <button type="button" class="btn btn-block btn-primary" style="">Thêm thiết bị</button> -->
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Feature</th>
+                  <th>Status</th>
+                  <!-- <th>Available</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of detailDevice">
+                  <td><a [routerLink]="['/devices/alldevices/detail', item.deviceID ]">{{item.deviceName}}</a></td>
+                  <td><a [routerLink]="['/devices/alldevices/detail', item.deviceID ]">{{item.feature}}</a></td>
+                  <td><a [routerLink]="['/devices/alldevices/detail', item.deviceID ]">{{item.status}}</a></td>
+                  <!-- <td>
+                    <a [routerLink]="['/devices/alldevices/detail', item.deviceID ]">
+                      {{item.available==1?'Còn':'Hết'}}
+                    </a>
+                  </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+    <!--/.row-->
+  </div>
+  <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
+  (click)="returnModal.show()">Tạo phiếu trả</button>
+  <div bsModal #returnModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Tạo phiếu trả</h4>
+          <button type="button" class="close" (click)="returnModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              Xác nhận tạo phiếu trả!!!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="returnModal.hide()">Close</button>
+          <button type="submit" class="btn btn-primary" (click)="addReturn()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--  -->

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bảng xếp hạng</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="mycss.css">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="process.js"></script>
+	<style>
+	.timer {
+	  text-align: center;
+	  font-size: 150px;
+	  margin-top: 0px;
+	}
+</style>
+</head>
+<body>
+<div id="main">
+	<div id="timerCount" class="timer"></div><br>
+	<div style="text-align: center; font-size: 60px;">
+		<span>&#9977;: </span><span id="team">abc</span>
+	</div>
+	<div style="text-align: center; font-size: 60px;">
+		<span>&#9873;: </span><span id="checkPoint">0</span>
+	</div>
+	<div class="container">
+		&nbsp;&nbsp;&nbsp;&nbsp;<h1 class="street">RANKING</h1>
+		<div class="row" id="rank">
+		</div>
+	</div>
+	<div style="margin-top: 600px;">
+		<input placeholder="Team" type="text" id="inputTeam">
+		<span><button class="btn" id="updateTeam">Update</button></span>
+	</div>
+	<div class="row" style="margin-top: 10px;">
+		<button class="col-3 btn btn-success" id="start">Start/Restart</button>
+		<button class="col-3 btn btn-warning" id="stop">Stop</button>
+		<button class="col-3 btn btn-danger" id="resetRank">Reset Rank(carefully!)</button>
+	</div>
+</div>
+</body>
+</html>

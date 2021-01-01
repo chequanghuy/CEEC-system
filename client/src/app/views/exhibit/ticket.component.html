@@ -1,0 +1,154 @@
+<form (ngSubmit)="loanSubmit()" [formGroup]="loanForm">
+  <div class="animated fadeIn">
+    <div class="row">
+      <!--/.col-->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h5>Thông tin người mượn</h5>
+          </div>
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="mssv-input"><strong>MSSV</strong></label>
+              <div class="col-md-8">
+                <input type="number" id="mssv-input" name="mssv-input" class="form-control" placeholder="MSSV"
+                  formControlName="MSSV">
+                <!-- <span class="help-block">This is a help text</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="date-input"><strong>Ngày mượn:</strong></label>
+              <div class="col-md-8">
+                <input type="date" id="date-input" name="date-input" class="form-control" placeholder="Text"
+                  formControlName="DateBegin">
+                <!-- <span class="help-block">This is a help text</span> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-4 col-form-label" for="date1-input"><strong>Ngày trả:</strong></label>
+              <div class="col-md-8">
+                <input type="date" id="date1-input" name="date1-input" class="form-control" placeholder="Text"
+                  formControlName="DateEnd">
+                <!-- <span class="help-block">This is a help text</span> -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-lg-10" style="display: flex;
+              align-items: center;"><i class="fa fa-align-justify"></i><span style="margin-left: 5px;">Các thiết bị
+                  đang mượn</span></div>
+              <div class="col-lg-2 center">
+                <button type="button" class="btn btn-block btn-primary" data-toggle="modal"
+                  (click)="addModal.show()">Thêm thiết bị</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Date registered</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of deviceAdd">
+                  <td>{{item.name}}</td>
+                  <td>{{item.feature}}</td>
+                  <td>{{item.status}}</td>
+                  <td>
+                    <!-- <span class="badge badge-success">Active</span> -->
+                 
+                      {{item.available}}
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+    <!--/.row-->
+  </div>
+  <button type="submit" class="btn btn-block btn-primary" style="">Xác nhận</button>
+</form>
+<div bsModal #addModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Tìm thiết bị</h4>
+        <button type="button" class="close" (click)="addModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="searchSubmit()" [formGroup]="searchForm">
+          <div class="row">
+            <div class="form-group row col-lg-10">
+              <label class="col-md-4 col-form-label" for="name-input"><strong>Tên thiết bị</strong></label>
+              <div class="col-md-8">
+                <input type="text" id="name-input" name="name-input" class="form-control" placeholder="Tên"
+                  formControlName="Name">
+                <!-- <span class="help-block">This is a help text</span> -->
+              </div>
+            </div>
+            <div class=" col-lg-2">
+              <button type="submit" class="btn btn-block btn-primary">Tìm</button>
+            </div>
+          </div>
+        </form>
+        <div class="card-header">
+          <div class="row">
+            <div class="col-lg-10" style="display: flex;
+                align-items: center;"><i class="fa fa-align-justify"></i><span style="margin-left: 5px;">Tìm
+                thấy</span></div>
+            <!-- <div class="col-lg-2 center">
+                <button type="button" class="btn btn-block btn-primary"  data-toggle="modal"
+                (click)="addModal.show()">Thêm thiết bị</button>
+              </div> -->
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th><input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
+                <th>Name</th>
+                <th>Feature</th>
+                <th>Status</th>
+                <th>Available</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of deviceArray; let i=index; let odd = odd" [ngClass]="odd ? 'odd_col' : 'even_col'">
+                <td><input type="checkbox" value="{{p.deviceID}}" [(ngModel)]="deviceArray[i].checked"></td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.feature }}</td>
+                <td>{{ p.status }}</td>
+                <td>{{ p.available==1?'Còn':'Hết' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="addModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addDevice()"><i class="fa fa-dot-circle-o"></i>
+          Submit</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

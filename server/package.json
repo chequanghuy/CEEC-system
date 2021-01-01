@@ -1,0 +1,36 @@
+{
+  "name": "doorrfid_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NguyenQuoc",
+  "license": "ISC",
+  "dependencies": {
+    "aes-js": "^3.1.2",
+    "angular": "^1.8.0",
+    "angularjs": "0.0.1",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "bootstrap4-toggle": "^3.6.1",
+    "chart.js": "^2.9.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "express-session": "^1.17.1",
+    "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "popper.js": "^1.16.1",
+    "socket.io": "^2.3.0",
+    "socketio": "^1.0.0",
+    "ws": "^7.2.3"
+  }
+}

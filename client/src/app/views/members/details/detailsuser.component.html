@@ -1,0 +1,168 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-lg-11" style="display: flex;
+        align-items: center;"><i class="fa fa-align-justify"></i><span
+                    style="margin-left: 5px;margin-right: 5px;">Members(CEEC)</span>
+                <button type="button" class="btn btn-block btn-primary"
+                    style="height: 35px !important;width: 40px !important;" data-toggle="modal"
+                    (click)="settingModal.show()"><i class="icon-settings icons"></i></button>
+            </div>
+            <div class="col-lg-1 center">
+                <button type="button" class="btn btn-block btn-danger" data-toggle="modal"
+                    (click)="deleteModal.show()"><i class="cui-delete icons d-block"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4" style="
+            max-width: 400px;
+            max-height: 400px;
+            border: 1px solid #BFBFBF;
+            background-color: white;
+            box-shadow: 10px 10px 5px #aaaaaa;">
+                <img src="{{detail.image}}" class="img-polaroid" alt="Lenovo Desktop"
+                    style="width: 100%;height: 100%;">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
+
+                <h2>{{detail.name}}</h2>
+                <p>{{detail.birthday}}</p>
+                <h5>Giới tính: {{detail.gender==1?'Nam':'Nữ'}}</h5>
+                <h5 class="muted">Chức vụ: {{detail.role==2?'Thành viên':detail.role==1?'Phó chủ nhiệm':'Chủ nhiệm'}}</h5>
+                <h5 class="muted">MSSV: {{detail.mssv}}</h5>
+                <h5 class="muted">Số điện thoại: {{detail.sdt}}</h5>
+                <h5>Facebook: <a
+                        href="{{detail.facebook}}">{{detail.facebook}}</a>
+                </h5>
+                <!-- <br> -->
+                <!-- <p><a href="#" class="btn btn-success btn-large">Đăng kí mượn</a></p> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #settingModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <form (ngSubmit)="settingSubmit()" [formGroup]="settingForm">
+        <div class="modal-header">
+          <h4 class="modal-title">Sửa thông tin thành viên</h4>
+          <button type="button" class="close" (click)="settingModal.hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="name-input"><strong>Họ tên</strong></label>
+                <div class="col-md-9">
+                  <input type="text" id="name-input" name="name-input" class="form-control" placeholder="Họ tên"
+                    formControlName="Name">
+                  <!-- <span class="help-block">This is a help text</span> -->
+                </div>
+              </div>
+              <div class="form-group row" formGroupName="Gender">
+                <label class="col-md-3 col-form-label" for="inline-radios1"><strong>Giới tính</strong> </label>
+                <div class="col-md-9 col-form-label">
+                  <div class="form-check form-check-inline mr-1" id="inline-radios1">
+                    <input class="form-check-input" type="radio" value="1" formControlName="GenderVal" (check)="detail.gender==1">
+                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                  </div>
+                  <div class="form-check form-check-inline mr-1">
+                    <input class="form-check-input" type="radio" value="0" formControlName="GenderVal" (check)="detail.gender==2">
+                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="date-input"><strong>Ngày sinh</strong></label>
+                <div class="col-md-9">
+                  <input type="date" id="date-input" name="date-input" class="form-control" placeholder="Text"
+                    formControlName="Date">
+                  <!-- <span class="help-block">This is a help text</span> -->
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="mssv-input"><strong>MSSV</strong></label>
+                <div class="col-md-9">
+                  <input type="number" id="mssv-input" name="mssv-input" class="form-control" placeholder="MSSV"
+                    formControlName="MSSV">
+                  <!-- <span class="help-block">This is a help text</span> -->
+                </div>
+              </div>
+    
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="number-input"><strong>Số điện thoại</strong></label>
+                <div class="col-md-9">
+                  <input type="number" id="number-input" name="number-input" class="form-control"
+                    placeholder="Số điện thoại" formControlName="SDT">
+                  <!-- <span class="help-block">This is a help text</span> -->
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="fb-input"><strong>Facebook</strong></label>
+                <div class="col-md-9">
+                  <input type="text" id="fb-input" name="fb-input" class="form-control" placeholder="Facebook"
+                    formControlName="Facebook">
+                  <!-- <span class="help-block">This is a help text</span> -->
+                </div>
+              </div>
+              <div class="form-group row" formGroupName="Role">
+                <label class="col-md-3 col-form-label" for="inline-radios"><strong>Chức vụ</strong> </label>
+                <div class="col-md-9 col-form-label">
+                  <div class="form-check form-check-inline mr-1" id="inline-radios">
+                    <input class="form-check-input" type="radio" value="0" formControlName="RoleVal">
+                    <label class="form-check-label" for="inlineRadio1">Chủ nhiệm</label>
+                  </div>
+                  <div class="form-check form-check-inline mr-1">
+                    <input class="form-check-input" type="radio" value="1" formControlName="RoleVal">
+                    <label class="form-check-label" for="inlineRadio2">Phó chủ nhiệm</label>
+                  </div>
+                  <div class="form-check form-check-inline mr-1">
+                    <input class="form-check-input" type="radio" value="2" formControlName="RoleVal">
+                    <label class="form-check-label" for="inlineRadio3">Thành viên</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="file-input"><strong>Ảnh đại diện</strong> </label>
+                <div class="col-md-9">
+                  <input type="file" id="file-input" name="file-input" formControlName="UrlImage">
+                </div>
+              </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="settingModal.hide()">Close</button>
+          <button type="submit" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--  -->
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-danger" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Xóa thành viên</h4>
+        <button type="button" class="close" (click)="deleteModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        Có chắc bạn muốn xóa thành viên?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="deleteModal.hide()">Close</button>
+        <button (click)="deleteMember()" class="btn btn-danger"><i class="fa fa-dot-circle-o"></i> Delete</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

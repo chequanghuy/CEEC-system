@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Login</title>
+	<link rel="icon" href="images/icons/favicon.ico" type="image/icon type">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="module/bootstrap/dist/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<link href="module/bootstrap4-toggle/css/bootstrap4-toggle.min.css"
+		rel="stylesheet">
+
+	<!-- Optional theme -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+	<script src="module/jquery/dist/jquery.min.js"></script>
+	<script src="socket.io/socket.io.js"></script>
+	<script src="module/bootstrap/dist/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<script src="module/popper.js/dist/umd/popper.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="module/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
+	<script src="module/angular/angular.min.js"></script>
+	<script src="module/chart.js/dist/Chart.min.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+	<div class="container" ng-app="myApp" ng-controller="customersCtrl">
+		<div class="row" ng-app="myApp" ng-controller="customersCtrl">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="page">
+					<div class="border border-success">
+						<div class="page-header">
+							<img src="images/icons/favicon.ico" alt="icon" style="width: 100px">
+							<div class="btn-group bottom">
+								<button type="button" class="btn btn-success" data-toggle="modal"
+									data-target="#myModal">
+									Thành viên
+								</button>
+								<!-- The Modal -->
+								<div class="modal fade" id="myModal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Thành viên</h4>
+												<button type="button" class="close"
+													data-dismiss="modal">&times;</button>
+											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body" ng-app="myApp" ng-controller="customersCtrl">							
+												<table class="table">
+													<thead>
+													  <tr>
+														<th>Name</th>
+														<th>Student ID</th>
+													  </tr>
+													</thead>
+													<tbody>
+														<tr ng-repeat="x in names">
+															<td>{{ x.Name }}</td>
+															<td>{{ x.ID }}</td>
+														  </tr>
+													</tbody>
+												  </table>
+											</div>
+
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger"
+													data-dismiss="modal">Close</button>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btn btn-success" data-toggle="modal"
+									data-target="#myModal1" id="addmember">
+									Thêm thành viên
+								</button>
+								<!-- The Modal -->
+								<div class="modal fade" id="myModal1">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Thêm thành viên</h4>
+												<button type="button" class="close"
+													data-dismiss="modal">&times;</button>
+											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body">
+												<form id="register-form">
+													<div class="form-group">
+														<label for="userid">Stundent ID:</label>
+														<input type="number" class="form-control"
+															placeholder="Enter student ID" id="userid" name="userid" >
+													</div>
+													<div class="form-group">
+														<label for="pwd">Password:</label>
+														<input type="password" class="form-control"
+															placeholder="Enter password" id="pwd" name="pwd" maxlength="16">
+													</div>
+													<div class="form-group">
+														<label for="name">Full name:</label>
+														<input type="text" class="form-control"
+															placeholder="Enter full name" id="name" name="name">
+													</div>
+													<div class="form-group">
+														<label for="location">Location:</label>
+														<input type="text" class="form-control"
+															placeholder="Enter location" id="location" name="location">
+													</div>
+													<div class="form-group">
+														<label for="age">Age:</label>
+														<input type="number" class="form-control"
+															placeholder="Enter age" id="age" name="age">
+													</div>
+													<button type="button" class="btn btn-primary" id="allowaddcard">Add card</button>
+													<br>
+													<div class="form-group">
+														<label for="idcard">Wating Card:</label>
+														<input type="password" class="form-control"
+															placeholder="Enter password" id="idcard" name="idcard" readonly>
+													</div>
+													<div class="form-group form-check">
+														<label class="form-check-label">
+															<input class="form-check-input" type="checkbox" name="checkadmin"> Admin
+														</label>
+													</div>
+													<button type="submit" class="btn btn-primary" name="allowsubmit" id="allowsubmit" onclick="check()">Submit</button>
+												</form>
+											</div>
+
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger"
+													data-dismiss="modal">Close</button>
+											</div>
+
+										</div>
+									</div>
+								</div>
+								<a type="button" class="btn btn-success" href="https://www.facebook.com/Computer.Engineering.Embedded.Club/">Liên hệ</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="page-body">
+						<div class="row">
+							<div class="col-md-12">
+								<span class="right">
+									<div>Xin chào <span id="myname"></span>,<a href="/">Log out</a></div>
+								</span>
+							</div>
+							<div class="col-md-3 active-door">
+								<label for="statusdoor"><b>Tình trạng cửa</b></label>
+								<input id="toggle-event" type="checkbox" checked data-toggle="toggle" data-on="Mở"
+									data-off="Đóng" data-onstyle="success" data-offstyle="danger"><br>
+								<label for="modedoor"><b>Chế độ</b></label><br>
+								<div class="btn-group-vertical btn-group-toggle" data-toggle="buttons" id="check-mode">
+									<label class="btn btn-outline-success" id="default">
+										<input type="radio" name="options" id="default" value="default"> Mặc
+										định
+									</label>
+									<label class="btn btn-outline-success" id="normalopen">
+										<input type="radio" name="options" id="normalopen" value="normalopen"> Luôn mở
+									</label>
+								</div>
+							</div>
+							<div class="col-md-9 chart">
+								<canvas id="myChart"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+	</div>
+	<script type="text/javascript" src="js/process.js"></script>
+
+</body>
+
+</html>
