@@ -1,0 +1,22 @@
+.page{
+    border-radius: 20px 0px;
+    border-style: solid;
+    border-color: rgb(236, 241, 240);
+    background-color: rgb(236, 241, 240);
+}
+.border-success{
+    border-radius: 20px 0px;
+    background-color: rgb(154, 224, 183);
+}
+.active-door{
+    padding: 25px;
+}
+.chart{
+    padding: 25px;
+}
+.right{
+    text-align: right;
+}
+.bottom{
+    vertical-align: bottom;
+}
